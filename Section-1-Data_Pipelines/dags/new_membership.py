@@ -1,7 +1,13 @@
 from datetime import datetime, timedelta
-
-# from airflow.operators.python import PythonOperator
+from airflow import DAG
+from airflow.operators.python import PythonOperator
 from airflow.decorators import dag, task
+from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+import pandas as pd
+from sqlalchemy import create_engine
+import psycopg2
+import os
 
 default_args = {
     'owner': 'Rachel',
@@ -9,41 +15,88 @@ default_args = {
     'retry_delay': timedelta(minutes=5)
 }
 
-@dag(
-    dag_id='membership_dag',
-    default_args = default_args,
-    description='dag for membership etl',
-    start_date=datetime(2023, 5, 13),
-    schedule_interval='@hourly')
+def csv_to_tbl():
+    url = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_1.csv'
+    url2 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_2.csv'
+    url3 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/applications_dataset_test1.csv'
+#     # conn = psycopg2.connect("host=localhost dbname=postgres user=postgres")
+    # os.chdir('/Users/homersimpson/Documents/DETechAssessment-RachelAng/DETechAssessment-RachelAng/Section-1-Data_Pipelines/dags')
+    df = pd.concat(map(pd.read_csv, [url, url3]), ignore_index=True)
+    print(df)
+    df.info()
+    # df.to_csv('~/Documents/DETechAssessment-RachelAng/DETechAssessment-RachelAng/Section-1-Data_Pipelines/dags')
+#     sdf = df.dropna(axis=0, subset=['name'])
+#     print(sdf)
+#     udf = df.drop
+    # jdf = df.to_string(df)
 
-def membership_etl():
-    @task()
-    def read_csv():
-        import pandas as pd
+    # postgres_sql_upload = PostgresHook(postgres_conn_id="postgres_localhost")
+    # postgres_sql_upload.bulk_load('applications_dataset', jdf)
 
-        url = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_1.csv'
-        url2 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_2.csv'
-        url3 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/applications_dataset_test1.csv'
+    # engine = create_engine('postgres://airflow:airflow@localhost:5432/test')
+    # df.to_sql('applications_dataset', engine)
+    # os.chdir('/Users/homersimpson/Documents/DETechAssessment-RachelAng/DETechAssessment-RachelAng/Section-1-Data_Pipelines/dags')
+    # dir = os.getcwd()
+    # print(dir)
+
+def data_transform():
+    url = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_1.csv'
+    url2 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_2.csv'
+    url3 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/applications_dataset_test1.csv'
+#     # conn = psycopg2.connect("host=localhost dbname=postgres user=postgres")
+    # os.chdir('/Users/homersimpson/Documents/DETechAssessment-RachelAng/DETechAssessment-RachelAng/Section-1-Data_Pipelines/dags')
+    df = pd.concat(map(pd.read_csv, [url, url3]), ignore_index=True)
+
+    udf = df[df.name == '']
+    sdf = df.drop(df[df.name == ''].index)
+
+    print(udf)
+    udf.info()
+    sdf.info()
+
+    datetime.
+
+with DAG(
+    dag_id='dag_with_postgresql_v5',
+    default_args=default_args,
+    start_date=datetime(2023,5,13),
+    schedule_interval='0 * * * *'
+) as dag:
+    # task1 = PostgresOperator(
+    #     task_id='create_postgres_table',
+    #     postgres_conn_id='postgres_localhost',
+    #     sql="""
+    #         create table if not exists dag_runs (
+    #             dt date,
+    #             dag_id character varying,
+    #             primary key (dt, dag_id)
+    #         )
+    #     """
+    # )
+    # task2 = PostgresOperator(
+    #     task_id='create_applications_table',
+    #     postgres_conn_id='postgres_localhost',
+    #     sql="""
+    #         CREATE TABLE IF NOT EXISTS applications_dataset (
+    #             name VARCHAR,
+    #             email VARCHAR,
+    #             date_of_birth VARCHAR,
+    #             mobile_no VARCHAR
+    #         )
         
-        df = pd.concat(map(pd.read_csv, [url, url3]), ignore_index=True)
+    #     """
+    # )
 
-        print(df)
-        # ti.xcom_push(df=df)
-        jdf = pd.DataFrame.to_json(df)
-        return jdf
-        
-    @task()
-    def rm_no_name(jdf):
-        import pandas as pd
-        # df=ti.xcom_pull(task_ids='read_csv', key='read_csv')
-        # sdf = df.drop(df[df.name == ''].index)
-        # udf = df[df.name == ''].index
-        # print(udf)
-        # return df
-        print("Sigh")
+    task3 = PythonOperator(
+        task_id='csv_to_tbl',
+        python_callable=csv_to_tbl
+    )
 
+    task4 = PythonOperator(
+        task_id='data_transform',
+        python_callable=data_transform
+    )
 
-    read_csv=read_csv()
-    rm_no_name = rm_no_name(jdf=read_csv)
-
-membership_dag = membership_etl()
+    # task1
+    # task2
+    task3
