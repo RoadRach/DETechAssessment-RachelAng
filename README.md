@@ -55,7 +55,7 @@ Considerations:
 ![alt text](https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-3-System-Design/System_Overview.png "System Design Overview")
 
 <p align="center" width="100%">
-    <img width="33%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-3-System-Design/System_Overview.png">
+    <img width="100%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-3-System-Design/System_Overview.png">
 </p>
 
 ## Section 5: Machine Learning
