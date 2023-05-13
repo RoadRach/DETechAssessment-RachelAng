@@ -13,17 +13,17 @@
 ### Things to clarify
 - 
 
-### Assumptions:
-[ ] AWS is the cloud service provider
-[ ]  Users are all based in Singapore
-[ ] Image processing is meant by photoshop, filtering, or photo enhacement services
-[ ] Kafka stream is an external entity and only interacts with the cloud environment is uploading images to the cloud environment
-[ ] Code written by engineers are in Java
-[ ] Asumming code written are in short segments, run time for each function does not exceed 10 minutes
-[ ] Data produced for BI includes encrypted customer information, service survey response
-[ ] Business intelligence would use data for financial and market research purposes
-[ ] If system crashes, there has to be a backup ready
-[ ] Service has to be available 24/7
+### Assumptions Checklist:
+- [ ] AWS is the cloud service provider
+- [ ]  Users are all based in Singapore
+- [ ] Image processing is meant by photoshop, filtering, or photo enhacement services
+- [ ] Kafka stream is an external entity and only interacts with the cloud environment is uploading images to the cloud environment
+- [ ] Code written by engineers are in Java
+- [ ] Asumming code written are in short segments, run time for each function does not exceed 10 minutes
+- [ ] Data produced for BI includes encrypted customer information, service survey response
+- [ ] Business intelligence would use data for financial and market research purposes
+- [ ] If system crashes, there has to be a backup ready
+- [ ] Service has to be available 24/7
 
 
 ### System Requirements/Considerations:
