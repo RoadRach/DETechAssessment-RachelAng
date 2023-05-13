@@ -15,13 +15,14 @@
 
 ### Assumptions Checklist:
 - [ ] AWS is the cloud service provider
-- [ ]  Users are all based in Singapore
+- [ ] Users are all based in Singapore
 - [ ] Image processing is meant by photoshop, filtering, or photo enhacement services
 - [ ] Kafka stream is an external entity and only interacts with the cloud environment is uploading images to the cloud environment
 - [ ] Code written by engineers are in Java
 - [ ] Asumming code written are in short segments, run time for each function does not exceed 10 minutes
-- [ ] Data produced for BI includes encrypted customer information, service survey response
-- [ ] Business intelligence would use data for financial and market research purposes
+- [ ] Processed data for analytics production should be automated
+- [ ] Business intelligence resource will be accessed by multiple analytical teams (Sales, Fiannce, Analytics)
+- [ ] SQL is the main language for BI
 - [ ] If system crashes, there has to be a backup ready
 - [ ] Service has to be available 24/7
 
@@ -51,12 +52,15 @@ Considerations:
 - 
 
 ### System Design Overview
-
-![alt text](https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-3-System-Design/System_Overview.png "System Design Overview")
-
-<p align="center" width="100%">
-    <img width="100%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-3-System-Design/System_Overview.png">
+<p align="center" width="75%">
+    <img width="75%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-3-System-Design/System_Overview.png">
 </p>
+
+### S3 Bucket Design
+<p align="center" width="75%">
+    <img width="75%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-3-System-Design/S3_Overview.png">
+</p>
+
 
 ## Section 5: Machine Learning
 
