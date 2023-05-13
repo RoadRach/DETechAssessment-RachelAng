@@ -7,7 +7,6 @@
 - Section 4: Charts & APIs
 - Section 5: Machine Learning
 
-***
 
 ## Section 3: System Design
 
@@ -42,7 +41,7 @@ Considerations:
 #### Code managment on Cloud
 
 Considerations:
-- Amazon API Gateway: creates REST APIs
+- Amazon API Gateway: creates REST APIs, prevents exposure of AWS credentials between client and cloud infra
 - AWS Lambda: Pros: (No server management, execution time up to 15 min, run on demand, scaling is automated, supports Java)
 
 #### Storage
@@ -51,7 +50,10 @@ Considerations:
 #### Business Intelligence on Cloud
 - 
 
-***
+### System Design Overview
+
+![alt text](https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-3-System-Design/System_Overview.png "System Design Overview")
+
 
 ## Section 5: Machine Learning
 
