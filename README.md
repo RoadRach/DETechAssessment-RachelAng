@@ -25,22 +25,17 @@ Each challenge section will be contained in one single folder:
 
 ## Section 3: System Design
 
-### Things to clarify
-- 
-
 ### Assumptions Checklist:
-- [ ] AWS is the cloud service provider
+- [x] AWS is the cloud service provider
 - [ ] Users are all based in Singapore
-- [ ] Image processing is meant by photoshop, filtering, or photo enhacement services
-- [ ] Kafka stream is an external entity and only interacts with the cloud environment is uploading images to the cloud environment
-- [ ] Code written by engineers are in Java
-- [ ] Asumming code written are in short segments, run time for each function does not exceed 10 minutes
-- [ ] Processed data for analytics production should be automated
-- [ ] Business intelligence resource will be accessed by multiple analytical teams (Sales, Fiannce, Analytics)
-- [ ] SQL is the main language for BI
-- [ ] If system crashes, there has to be a backup ready
-- [ ] Service has to be available 24/7
-
+- [x] Users of web application using API to upload images are the company's clientele
+- [ ] Image processing is meant by processing image to identify objects (ex. Plant species, types of dogs, etc)
+- [x] Kafka stream is an external entity and only interacts with the cloud environment is uploading images to the cloud environment
+- [x] Code written by engineers are in Java
+- [x] Asumming code written are in short segments, run time for each function does not exceed 10 minutes
+- [x] Processed data for analytics production should be automated
+- [x] Business intelligence resource to be accessed by multiple analytical teams (Sales, Fiannce, Analytics)
+- [x] SQL is the main language for BI
 
 ### System Requirements/Considerations:
 
