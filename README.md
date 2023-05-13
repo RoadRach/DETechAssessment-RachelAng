@@ -7,6 +7,7 @@
 - Section 4: Charts & APIs
 - Section 5: Machine Learning
 
+***
 
 ## Section 3: System Design
 
@@ -39,8 +40,10 @@ Considerations:
 
 
 #### Code managment on Cloud
-- Amazon API Gateway
-- AWS Lambda: Pros: (No server management, execution time up to 15 min, )
+
+Considerations:
+- Amazon API Gateway: creates REST APIs
+- AWS Lambda: Pros: (No server management, execution time up to 15 min, run on demand, scaling is automated, supports Java)
 
 #### Storage
 - S3 access points (have diff policies for different types of users: biz analysts, finance analysts)
@@ -48,7 +51,7 @@ Considerations:
 #### Business Intelligence on Cloud
 - 
 
-
+***
 
 ## Section 5: Machine Learning
 
