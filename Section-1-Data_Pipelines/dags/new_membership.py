@@ -20,28 +20,25 @@ def membership_etl():
     @task()
     def read_csv():
         import pandas as pd
-        import requests
-        import glob
 
         url = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_1.csv'
         url2 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_2.csv'
-        test_url = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/*.csv'
-        
-
-        # dfs = pd.read_csv(url)
-        # dfs = dfs.append(pd.read_csv(url2))
         
         df = pd.concat(map(pd.read_csv, [url, url2]), ignore_index=True)
 
         print(df)
-        # url2 = 'https://github.com/ameeraadam/DETechAssessment-23/blob/main/applications_dataset_2.csv'
+        return df
+        
+    @task()
+    def rm_no_name():
+        import pandas as pd
 
-        # for f in url1:
-        #     dfs = pd.read_csv(f)
-        
-        # dfs = pd.read_csv('applications_dataset_1.csv')
-        # df = pd.concat(dfs, ignore_index=True)
-        
+        print("Hello!")
+        # df = df.drop(df[df.name == ''].index)
+
+        # print(df)
+
     read_csv=read_csv()
+    rm_no_name = rm_no_name()
 
 membership_dag = membership_etl()
