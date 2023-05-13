@@ -22,6 +22,24 @@ Each challenge section will be contained in one single folder:
 - Section 4: Charts & APIs
 - Section 5: Machine Learning
 
+## Section 1: Data Pipelines
+
+**Requirements Checklist:**
+- Process data from users **hourly**
+- Required to set up a pipeline to ingest, clean, perform validity checks, and create membership IDs for successful applications
+- Split name into first_name and last_name 
+- Format birthday field into YYYYMMDD
+- Remove any rows which do not have a name field (treat this as unsuccessful applications) 
+- Create a new field named above_18 based on the applicant's birthday
+- Membership IDs for successful applications should be the user's last name, followed by a SHA256 hash of the applicant's birthday, truncated to first 5 digits of hash (i.e <last_name>_<hash(YYYYMMDD)>) 
+- You are required to consolidate these datasets and output the successful applications into a folder, which will be picked up by downstream engineers
+- Unsuccessful applications should be condolidated and dropped into a separate folder.
+
+**Specificaitons:**
+- Mobile number is 8 digits
+- Applicant is over 18 years old as of 1 Jan 2022
+- Has a vlid email if email ends with @emailprovider.com or @emailprovider.net
+
 
 ## Section 3: System Design
 
@@ -40,18 +58,20 @@ Each challenge section will be contained in one single folder:
 ### System Requirements/Considerations:
 
 #### Source data management
-Requirements:
+**Requirements:**
 - Ingest uploaded images to cloud from Kafka streams
 - Ingest uploaded images to cloud from users of a web application using an API
 
-Considerations:
+**Considerations:**
 - Kafka Streams (considering AWS MSK): Noted needed cause we don't have to host a whole kafka cluster on AWS
 - Kinesis: Pros (supports Java via Flink, auto scaling, pay as you use) Cons (Mainly for analytics, limitations )
 
 
 #### Code managment on Cloud
+**Requirements:**
+- 
 
-Considerations:
+**Considerations:**
 - Amazon API Gateway: creates REST APIs, prevents exposure of AWS credentials between client and cloud infra
 - AWS Lambda: Pros: (No server management, execution time up to 15 min, run on demand, scaling is automated, supports Java)
 
