@@ -23,23 +23,15 @@ def membership_etl():
         import os
         import glob
 
-        path = os.path.realpath(__file__)
-        dir = os.path.dirname(path)
-        dir = dir.replace('dags', 'data')
+        url1 = 'https://github.com/ameeraadam/DETechAssessment-23/blob/main/applications_dataset_1.csv'
+        # url2 = 'https://github.com/ameeraadam/DETechAssessment-23/blob/main/applications_dataset_2.csv'
 
-        all_files = glob.glob(os.path.join(path, "*.csv"))
-
-        for f in all_files:
-            dfs = pd.read_csv(f)
+        # for f in url1:
+        #     dfs = pd.read_csv(f)
         
+        dfs = pd.read_csv(url1)
         df = pd.concat(dfs, ignore_index=True)
-
-
-        df.head()
-        df.info()
-        print("Hello World!")
-
-
+        
     read_csv=read_csv()
 
 membership_dag = membership_etl()
