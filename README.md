@@ -1,5 +1,20 @@
 # Tech Assessment
 
+## How to Navigate
+
+This repository is split into 2 parts: Documentation and Sources
+
+### Documentation
+This README file documents all 5 sections of the challenge and serves as a single point of information.
+
+### Sources
+Each challenge section will be contained in one single folder:
+- Section-1-Data-Pipelines
+- Section-2-Databases
+- Section-3-System-Design
+- Section-4-Charts-and-APIs
+- Section-5-Machine-Learning
+
 ## Table of Contents
 - Section 1: Data Pipelines
 - Section 2:Databases
