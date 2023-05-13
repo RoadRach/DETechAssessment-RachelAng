@@ -8,6 +8,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import psycopg2
 import os
+import re
 
 default_args = {
     'owner': 'Rachel',
@@ -50,11 +51,16 @@ def data_transform():
     udf = df[df.name == '']
     sdf = df.drop(df[df.name == ''].index)
 
-    print(udf)
-    udf.info()
-    sdf.info()
+    # split name
+    # sdf[['first_name', 'last_name']] = df['name'].str.split(' ', expand=True)
+    # print(sdf)
+    # sdf.info()
 
-    datetime.
+    pat = r'(Mrs\.|Mr.\|Ms\.|Dr\.)'
+
+    df['name'] = df['name'].apply(lambda x: re.sub(pat, '', x))
+    print(sdf)
+
 
 with DAG(
     dag_id='dag_with_postgresql_v5',
