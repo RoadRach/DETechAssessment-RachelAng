@@ -30,15 +30,15 @@ def membership_etl():
         return df
         
     @task()
-    def rm_no_name():
+    def rm_no_name(df):
         import pandas as pd
 
         print("Hello!")
-        # df = df.drop(df[df.name == ''].index)
+        df = df.drop(df[df.name == ''].index)
 
-        # print(df)
+        print(df)
 
     read_csv=read_csv()
-    rm_no_name = rm_no_name()
+    rm_no_name = rm_no_name(df=read_csv)
 
 membership_dag = membership_etl()
