@@ -8,6 +8,30 @@
 - Section 5: Machine Learning
 
 
+## Section 3: System Design
+### Assumptions:
+- Users are all based in Singapore
+- Image processing is meant by photoshop, filtering, or photo enhacement services
+- If system crashes, there has to be a backup ready
+- Service has to be available 24/7
+
+
+### System Requirements:
+
+#### Source data management
+
+
+
+#### Code managment on Cloud
+
+#### Storage
+- S3 access points (have diff policies for different types of users: biz analysts, finance analysts)
+
+#### Business Intelligence on Cloud
+- 
+
+
+
 ## Section 5: Machine Learning
 
 Classification, Regression or Clustering?:
