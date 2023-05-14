@@ -1,6 +1,7 @@
 import pandas as pd
 import nameparser as HumanName
 import datetime
+from datetime import datetime, date
 
 
 from nameparser import HumanName
@@ -36,7 +37,7 @@ def format_date(date_of_birth):
         date_obj = None
         for date_format in ['%m/%d/%Y', '%Y/%m/%d', '%Y/%d/%m', '%Y-%m-%d', '%d-%m-%Y', '%Y%d%m', '%d %B %Y', '%Y%m%d']:
             try:
-                date_obj = datetime.datetime.strptime(date_of_birth, date_format)
+                date_obj = datetime.strptime(date_of_birth, date_format)
                 break
             except ValueError:
                 pass
@@ -56,3 +57,15 @@ def format_date(date_of_birth):
 df['date_of_birth'] = df['date_of_birth'].apply(format_date)
 
 print(df)
+
+# def cal_age(date_of_birth, as_of_date):
+#     dob = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
+#     ref_date = datetime.strptime(as_of_date, '%Y-%m-%d').date()
+
+#     age = ref_date.year-dob.year - ((ref_date.month, ref_date.day) < (dob.month, dob.day))
+
+#     return age
+
+# df['above_18'] = df['date_of_birth'].apply(lambda x: cal_age(x, '2022-01-01'))
+
+# print(df)
