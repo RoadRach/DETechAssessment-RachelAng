@@ -40,6 +40,10 @@ Each challenge section will be contained in one single folder:
 - Applicant is over 18 years old as of 1 Jan 2022
 - Has a vlid email if email ends with @emailprovider.com or @emailprovider.net
 
+### Evidence of Cront job
+<p align="center" width="75%">
+    <img width="75%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-1-Data_Pipelines/cron.png">
+</p>
 
 ## Section 3: System Design
 
