@@ -50,7 +50,7 @@ def format_date(date_of_birth):
 
     except Exception as e:
         print(f'Error: {e}')
-        formatted_date = ''
+        formatted_date = pd.NA
 
     return formatted_date
 
@@ -58,14 +58,24 @@ df['date_of_birth'] = df['date_of_birth'].apply(format_date)
 
 print(df)
 
-# def cal_age(date_of_birth, as_of_date):
-#     dob = datetime.strptime(date_of_birth, '%Y-%m-%d').date()
-#     ref_date = datetime.strptime(as_of_date, '%Y-%m-%d').date()
+def cal_age(date_of_birth, as_of_date):
+    try:
+        dob = datetime.strptime(date_of_birth, '%Y%m%d').date()
+        ref_date = datetime.strptime(as_of_date, '%Y%m%d').date()
 
-#     age = ref_date.year-dob.year - ((ref_date.month, ref_date.day) < (dob.month, dob.day))
+        age = ref_date.year-dob.year - ((ref_date.month, ref_date.day) < (dob.month, dob.day))
 
-#     return age
+        if date_of_birth is None:
+            raise ValueError('Invalid date string ' + date_of_birth)
 
-# df['above_18'] = df['date_of_birth'].apply(lambda x: cal_age(x, '2022-01-01'))
+    except Exception as e:
+        print(f'Error: {e}')
+        age = pd.NA
+    
+    return age
 
-# print(df)
+df['above_18'] = df['date_of_birth'].apply(lambda x: cal_age(x, '20220101'))
+
+df = df.dropna(subset='date_of_birth').reset_index(drop=True)
+df.to_csv('cron_job.csv')
+print(df)
