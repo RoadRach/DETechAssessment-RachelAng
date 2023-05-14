@@ -158,9 +158,9 @@ ORDER BY count(order_id) DESC
 
 ## Section 5: Machine Learning
 
-Classification, Regression or Clustering?:
-    Classification and Clustering so far
-    Clustering is grouping unlabledexamples/data.  So we will go with classification.
+**Classification, Regression or Clustering?:**
+- Classification and Clustering so far
+-  Clustering is grouping unlabledexamples/data. so classification would be more suitable, and regression models would be used as the training model.  From there we can compare which is a better model and then determine which is the best by coming up with the score.
 
-Why did I choose this ML model:
- ML models that are NOT suitable: linear regression, logistic regression
+**Why did I choose this ML model:**
+Since we have multiple variables and known target to work with, regression is chosen for this task.
