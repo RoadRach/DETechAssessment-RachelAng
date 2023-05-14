@@ -1,7 +1,6 @@
 import pandas as pd
 import nameparser as HumanName
-import datetime
-from datetime import datetime, date
+import util_service as us
 
 
 from nameparser import HumanName
@@ -30,51 +29,11 @@ df['Last Name'] = df['parsed_name'].apply(lambda x: x.last)
 
 # print(df)
 
-# defining function for formatting dates to 'YYYYMMDD'
-def format_date(date_of_birth):
-    try:
-        # parse the date_of_birth using a list of date formats
-        date_obj = None
-        for date_format in ['%m/%d/%Y', '%Y/%m/%d', '%Y/%d/%m', '%Y-%m-%d', '%d-%m-%Y', '%Y%d%m', '%d %B %Y', '%Y%m%d']:
-            try:
-                date_obj = datetime.strptime(date_of_birth, date_format)
-                break
-            except ValueError:
-                pass
-
-        if date_obj is None:
-            raise ValueError('Invalid date string ' + date_of_birth)
-
-        # Format the date object to 'YYYYMMDD' format
-        formatted_date = date_obj.strftime('%Y%m%d')
-
-    except Exception as e:
-        print(f'Error: {e}')
-        formatted_date = pd.NA
-
-    return formatted_date
-
-df['date_of_birth'] = df['date_of_birth'].apply(format_date)
+df['date_of_birth'] = df['date_of_birth'].apply(us.format_date)
 
 print(df)
 
-def cal_age(date_of_birth, as_of_date):
-    try:
-        dob = datetime.strptime(date_of_birth, '%Y%m%d').date()
-        ref_date = datetime.strptime(as_of_date, '%Y%m%d').date()
-
-        age = ref_date.year-dob.year - ((ref_date.month, ref_date.day) < (dob.month, dob.day))
-
-        if date_of_birth is None:
-            raise ValueError('Invalid date string ' + date_of_birth)
-
-    except Exception as e:
-        print(f'Error: {e}')
-        age = pd.NA
-    
-    return (age>18)
-
-df['above_18'] = df['date_of_birth'].apply(lambda x: cal_age(x, '20220101'))
+df['above_18'] = df['date_of_birth'].apply(lambda x: us.cal_age(x, '20220101'))
 
 df = df.dropna(subset='date_of_birth').reset_index(drop=True)
 df.to_csv('cron_job.csv')
