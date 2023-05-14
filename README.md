@@ -57,6 +57,7 @@ i
 ```
 
 Main code: Section-1-Data-Pipelines > cron_job > cron_application.py
+
 Output : Section-1-Data-Pipelines > cron_job > output
 
 ## Section 2: Databases
@@ -67,8 +68,8 @@ Output : Section-1-Data-Pipelines > cron_job > output
 ### Requirements:
 - [ ] Set up a PostgreSQL db using the docker image provided
 - [ ] Have a dockerfile which will stand up db with the DDL statemnents to create the necessary tables
-- [ ] Produce entity relationship diagrams
-- [ ] Need to write SQL statement for the following: (1) Which are the top 10 members by spending (2) Which are the top 3 items that are frequently brought by members
+- [x] Produce entity relationship diagrams
+- [x] Need to write SQL statement for the following: (1) Which are the top 10 members by spending (2) Which are the top 3 items that are frequently brought by members
 
 ### Entity relationship diagram
 <p align="center" width="75%">
@@ -119,22 +120,30 @@ ORDER BY count(order_id) DESC
 
 **Considerations:**
 - Kafka Streams (considering AWS MSK): Noted needed cause we don't have to host a whole kafka cluster on AWS
-- Kinesis: Pros (supports Java via Flink, auto scaling, pay as you use) Cons (Mainly for analytics, limitations )
-
+- Kinesis: Pros (supports Java via Flink, auto scaling, pay as you use) Cons (Mainly for analytics)
 
 #### Code managment on Cloud
 **Requirements:**
-- 
+- Code must be hosted on cloud
 
 **Considerations:**
 - Amazon API Gateway: creates REST APIs, prevents exposure of AWS credentials between client and cloud infra
 - AWS Lambda: Pros: (No server management, execution time up to 15 min, run on demand, scaling is automated, supports Java)
 
 #### Storage
-- S3 access points (have diff policies for different types of users: biz analysts, finance analysts)
+**Requirements**
+- Images and its metadata needs to be deleted after 7 days
+- Ingested data needs to be prepared for analytics
+
+**Considerations**
+- S3 using access points (have diff policies for different types of users: biz analysts, finance analysts)
 
 #### Business Intelligence on Cloud
-- 
+**Requirements**
+- Have to be hosted on cloud
+
+**Consideration**
+- QuickSight: UI similar to tableau and PowerBI
 
 ### System Design Overview
 <p align="center" width="75%">
