@@ -25,15 +25,15 @@ Each challenge section will be contained in one single folder:
 ## Section 1: Data Pipelines
 
 **Requirements Checklist:**
-- Process data from users **hourly**
-- Required to set up a pipeline to ingest, clean, perform validity checks, and create membership IDs for successful applications
-- Split name into first_name and last_name 
-- Format birthday field into YYYYMMDD
-- Remove any rows which do not have a name field (treat this as unsuccessful applications) 
-- Create a new field named above_18 based on the applicant's birthday
-- Membership IDs for successful applications should be the user's last name, followed by a SHA256 hash of the applicant's birthday, truncated to first 5 digits of hash (i.e <last_name>_<hash(YYYYMMDD)>) 
-- You are required to consolidate these datasets and output the successful applications into a folder, which will be picked up by downstream engineers
-- Unsuccessful applications should be condolidated and dropped into a separate folder.
+- [ ] Process data from users **hourly**
+- [ ] Required to set up a pipeline to ingest, clean, perform validity checks, and create membership IDs for successful applications
+- [x] Split name into first_name and last_name 
+- [x] Format birthday field into YYYYMMDD
+- [ ] Remove any rows which do not have a name field (treat this as unsuccessful applications) 
+- [x] Create a new field named above_18 based on the applicant's birthday
+- [ ] Membership IDs for successful applications should be the user's last name, followed by a SHA256 hash of the applicant's birthday, truncated to first 5 digits of hash (i.e <last_name>_<hash(YYYYMMDD)>) 
+- [ ] You are required to consolidate these datasets and output the successful applications into a folder, which will be picked up by downstream engineers
+- [ ] Unsuccessful applications should be condolidated and dropped into a separate folder.
 
 **Specificaitons:**
 - Mobile number is 8 digits
