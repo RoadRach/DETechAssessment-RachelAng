@@ -56,10 +56,17 @@ def data_transform():
     # print(sdf)
     # sdf.info()
 
-    pat = r'(Mrs\.|Mr.\|Ms\.|Dr\.)'
+    def p_name(name):
+        return HumanName(name)
 
-    df['name'] = df['name'].apply(lambda x: re.sub(pat, '', x))
-    print(sdf)
+    df['parsed_name'] = df['name'].apply(p_name)
+
+    df['First Name'] = df['parsed_name'].apply(lambda x: x.first)
+    df['Last Name'] = df['parsed_name'].apply(lambda x: x.last)
+    df['Middle Name'] = df['parsed_name'].apply(lambda x: x.middle)
+    df['Title'] = df['parsed_name'].apply(lambda x: x.title)
+
+    print(df)
 
 
 with DAG(
