@@ -156,6 +156,19 @@ ORDER BY count(order_id) DESC
 </p>
 
 
+## Section 4: Charts & APIs
+
+### 503 Message
+<p align="center" width="75%">
+    <img width="75%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-4-Charts-and-APIs/Screenshot%202023-05-14%20at%205.32.03%20PM.png">
+</p>
+
+** Was working and wanted to have a touch up but the server on their end is down **
+
+This section I have plotted two graphs:
+- Number of COVID-19 cases in Singapore yearly
+- Number of COVID-19 cases in Singapore each month per year
+
 ## Section 5: Machine Learning
 
 **Classification, Regression or Clustering?:**
