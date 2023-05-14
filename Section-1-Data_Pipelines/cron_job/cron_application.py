@@ -39,9 +39,14 @@ df = df.dropna(subset='date_of_birth').reset_index(drop=True)
 df['above_18'] = df['date_of_birth'].apply(lambda x: us.is_above_18(x))
 
 # df = df.dropna(subset='date_of_birth').reset_index(drop=True)
-df.to_csv('cron_job.csv')
+# df.to_csv('cron_job.csv')
 # print(df)
 
 df['membership_id'] = df.apply(lambda x: us.get_membership_id(x['last_name'], x['date_of_birth']), axis=1)
 
+output_path = 'output/sucessful_applicants.csv'
+
+# clean up dataframe
+df = df.drop(['name', 'parsed_name'], axis=1)
+df.to_csv(output_path)
 print(df)

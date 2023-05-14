@@ -56,9 +56,10 @@ def is_valid_email(email):
 
 # check if mobile no is valid
 def is_valid_mobile(mobile_no):
-    exp = r'^\d[8]$'
-    return bool(re.match(exp, mobile_no))
+    exp = '^\d{8}$'
+    return bool(re.match(exp, str(mobile_no)))
 
+# generate membership id
 def get_membership_id(last_name, dob):
     h_dob = hashlib.sha256(dob.encode('utf-8')).hexdigest()
     return last_name + h_dob[:5]
