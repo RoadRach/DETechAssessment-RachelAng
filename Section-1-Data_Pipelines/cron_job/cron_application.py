@@ -3,14 +3,20 @@ import nameparser as HumanName
 from datetime import datetime
 
 
+from nameparser import HumanName
+import pandas as pd
 
+csv = ['applications_dataset_1.csv', 'applications_dataset_2.csv']
+df = pd.concat(map(pd.read_csv, csv), ignore_index=True)
 
+print(df)
 
+def p_name(name):
+    return HumanName(name)
 
-url = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_1.csv'
-url2 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/data/applications_dataset_2.csv'
-url3 = 'https://raw.githubusercontent.com/RoadRach/DETechAssessment-RachelAng/main/Section-1-Data_Pipelines/dags/applications_dataset_test1.csv'
-#     # conn = psycopg2.connect("host=localhost dbname=postgres user=postgres")
-# os.chdir('/Users/homersimpson/Documents/DETechAssessment-RachelAng/DETechAssessment-RachelAng/Section-1-Data_Pipelines/dags')
-df = pd.concat(map(pd.read_csv, [url, url3]), ignore_index=True)
+df['parsed_name'] = df['name'].apply(p_name)
 
+df['First Name'] = df['parsed_name'].apply(lambda x: x.first)
+df['Last Name'] = df['parsed_name'].apply(lambda x: x.last)
+
+print(df)
