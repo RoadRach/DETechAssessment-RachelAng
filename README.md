@@ -17,7 +17,7 @@ Each challenge section will be contained in one single folder:
 
 ## Table of Contents
 - Section 1: Data Pipelines
-- Section 2:Databases
+- Section 2: Databases
 - Section 3: System Design
 - Section 4: Charts & APIs
 - Section 5: Machine Learning
@@ -25,25 +25,52 @@ Each challenge section will be contained in one single folder:
 ## Section 1: Data Pipelines
 
 **Requirements Checklist:**
-- [ ] Process data from users **hourly**
+- [x] Process data from users **hourly**
 - [ ] Required to set up a pipeline to ingest, clean, perform validity checks, and create membership IDs for successful applications
 - [x] Split name into first_name and last_name 
 - [x] Format birthday field into YYYYMMDD
-- [ ] Remove any rows which do not have a name field (treat this as unsuccessful applications) 
+- [x] Remove any rows which do not have a name field (treat this as unsuccessful applications) 
 - [x] Create a new field named above_18 based on the applicant's birthday
 - [x] Membership IDs for successful applications should be the user's last name, followed by a SHA256 hash of the applicant's birthday, truncated to first 5 digits of hash (i.e <last_name>_<hash(YYYYMMDD)>) 
-- [ ] You are required to consolidate these datasets and output the successful applications into a folder, which will be picked up by downstream engineers
+- [x] You are required to consolidate these datasets and output the successful applications into a folder, which will be picked up by downstream engineers
 - [ ] Unsuccessful applications should be condolidated and dropped into a separate folder.
 
 **Specificaitons:**
 - Mobile number is 8 digits
 - Applicant is over 18 years old as of 1 Jan 2022
-- Has a vlid email if email ends with @emailprovider.com or @emailprovider.net
+- Has a valid email if email ends with @emailprovider.com or @emailprovider.net
 
-### Evidence of Cront job
+### Evidence of Cron job
 <p align="center" width="75%">
     <img width="75%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-1-Data_Pipelines/cron.png">
 </p>
+
+Main code: Section-1-Data-Pipelines > cron_job > cron_application.py
+Output : Section-1-Data-Pipelines > cron_job > output
+
+## Section 2: Databases
+### Assumption:
+- In each transaction, quantity of each items bought is 1
+
+### Requirements:
+- [ ] Set up a PostgreSQL db using the docker image provided
+- [ ] Have a dockerfile which will stand up db with the DDL statemnents to create the necessary tables
+- [ ] Produce entity relationship diagrams
+- [ ] Need to write SQL statement for the following: (1) Which are the top 10 members by spending (2) Which are the top 3 items that are frequently brought by members
+
+### SQL queries:
+- Which are the top 10 members by spending
+```
+SELECT customer_id, SUM(total_items_price) as spending
+FROM tbl
+GROUP BY customer_id
+ORDER BY spending
+```
+
+- Which are the top 3 items that are frequently brought (I am assuming it is supposed to be bought) by members
+```
+SELECT 
+```
 
 ## Section 3: System Design
 
