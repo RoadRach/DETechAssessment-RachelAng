@@ -31,7 +31,7 @@ Each challenge section will be contained in one single folder:
 - [x] Format birthday field into YYYYMMDD
 - [ ] Remove any rows which do not have a name field (treat this as unsuccessful applications) 
 - [x] Create a new field named above_18 based on the applicant's birthday
-- [ ] Membership IDs for successful applications should be the user's last name, followed by a SHA256 hash of the applicant's birthday, truncated to first 5 digits of hash (i.e <last_name>_<hash(YYYYMMDD)>) 
+- [x] Membership IDs for successful applications should be the user's last name, followed by a SHA256 hash of the applicant's birthday, truncated to first 5 digits of hash (i.e <last_name>_<hash(YYYYMMDD)>) 
 - [ ] You are required to consolidate these datasets and output the successful applications into a folder, which will be picked up by downstream engineers
 - [ ] Unsuccessful applications should be condolidated and dropped into a separate folder.
 

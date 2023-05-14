@@ -23,8 +23,8 @@ df['mobile_no'] = df['mobile_no'].apply(lambda x: x if us.is_valid_mobile(x) els
 
 # parse applicant's names
 df['parsed_name'] = df['name'].apply(us.p_name)
-df['First Name'] = df['parsed_name'].apply(lambda x: x.first)
-df['Last Name'] = df['parsed_name'].apply(lambda x: x.last)
+df['first_name'] = df['parsed_name'].apply(lambda x: x.first)
+df['last_name'] = df['parsed_name'].apply(lambda x: x.last)
 
 # print(df)
 
@@ -40,5 +40,8 @@ df['above_18'] = df['date_of_birth'].apply(lambda x: us.is_above_18(x))
 
 # df = df.dropna(subset='date_of_birth').reset_index(drop=True)
 df.to_csv('cron_job.csv')
-print(df)
+# print(df)
 
+df['membership_id'] = df.apply(lambda x: us.get_membership_id(x['last_name'], x['date_of_birth']), axis=1)
+
+print(df)

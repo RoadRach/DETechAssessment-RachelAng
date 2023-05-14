@@ -1,7 +1,8 @@
 from datetime import date, datetime
 import pandas as pd
 from nameparser import HumanName
-import re
+import re, hashlib
+
 
 # function for dropping off applicant(s) with no name
 def p_name(name):
@@ -57,3 +58,7 @@ def is_valid_email(email):
 def is_valid_mobile(mobile_no):
     exp = r'^\d[8]$'
     return bool(re.match(exp, mobile_no))
+
+def get_membership_id(last_name, dob):
+    h_dob = hashlib.sha256(dob.encode('utf-8')).hexdigest()
+    return last_name + h_dob[:5]
