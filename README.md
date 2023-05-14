@@ -26,14 +26,14 @@ Each challenge section will be contained in one single folder:
 
 **Requirements Checklist:**
 - [x] Process data from users **hourly**
-- [ ] Required to set up a pipeline to ingest, clean, perform validity checks, and create membership IDs for successful applications
+- [x] Required to set up a pipeline to ingest, clean, perform validity checks, and create membership IDs for successful applications
 - [x] Split name into first_name and last_name 
 - [x] Format birthday field into YYYYMMDD
 - [x] Remove any rows which do not have a name field (treat this as unsuccessful applications) 
 - [x] Create a new field named above_18 based on the applicant's birthday
 - [x] Membership IDs for successful applications should be the user's last name, followed by a SHA256 hash of the applicant's birthday, truncated to first 5 digits of hash (i.e <last_name>_<hash(YYYYMMDD)>) 
 - [x] You are required to consolidate these datasets and output the successful applications into a folder, which will be picked up by downstream engineers
-- [ ] Unsuccessful applications should be condolidated and dropped into a separate folder.
+- [x] Unsuccessful applications should be condolidated and dropped into a separate folder.
 
 **Specificaitons:**
 - Mobile number is 8 digits
@@ -44,6 +44,17 @@ Each challenge section will be contained in one single folder:
 <p align="center" width="75%">
     <img width="75%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-1-Data_Pipelines/cron.png">
 </p>
+
+To run the script hourly, run the following:
+```
+crontab -e
+
+i
+
+0 * * * * ~/local directory/DETechAssignment-RachelAng/Section-1-Data-Pipelines/cron_job/cron_application.py
+
+:wq
+```
 
 Main code: Section-1-Data-Pipelines > cron_job > cron_application.py
 Output : Section-1-Data-Pipelines > cron_job > output
