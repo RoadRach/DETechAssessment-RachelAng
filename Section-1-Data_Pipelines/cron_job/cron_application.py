@@ -15,10 +15,6 @@ udf = df.loc[df['name'].eq('NaN')]
 # dropping applicants with no names
 df = df.dropna(subset='name').reset_index(drop=True)
 
-# print(df)
-
-# print(udf)
-
 def p_name(name):
     return HumanName(name)
 
@@ -33,7 +29,7 @@ df['date_of_birth'] = df['date_of_birth'].apply(us.format_date)
 
 print(df)
 
-df['above_18'] = df['date_of_birth'].apply(lambda x: us.cal_age(x, '20220101'))
+df['above_18'] = df['date_of_birth'].apply(lambda x: us.above_18(x, '20220101'))
 
 df = df.dropna(subset='date_of_birth').reset_index(drop=True)
 df.to_csv('cron_job.csv')

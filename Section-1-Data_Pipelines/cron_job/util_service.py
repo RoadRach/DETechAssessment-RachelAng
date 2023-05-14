@@ -25,7 +25,7 @@ def format_date(date_of_birth):
 
     return formatted_date
 
-def cal_age(date_of_birth, as_of_date):
+def above_18(date_of_birth, as_of_date):
     try:
         dob = datetime.strptime(date_of_birth, '%Y%m%d').date()
         ref_date = datetime.strptime(as_of_date, '%Y%m%d').date()
