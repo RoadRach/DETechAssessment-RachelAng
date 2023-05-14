@@ -1,5 +1,10 @@
 from datetime import date, datetime
 import pandas as pd
+from nameparser import HumanName
+
+# function for dropping off applicant(s) with no name
+def p_name(name):
+    return HumanName(name)
 
 # defining function for formatting dates to 'YYYYMMDD'
 def format_date(date_of_birth):
@@ -25,10 +30,11 @@ def format_date(date_of_birth):
 
     return formatted_date
 
-def above_18(date_of_birth, as_of_date):
+# check for applicants who are above age of 18
+def above_18(date_of_birth):
     try:
         dob = datetime.strptime(date_of_birth, '%Y%m%d').date()
-        ref_date = datetime.strptime(as_of_date, '%Y%m%d').date()
+        ref_date = datetime.strptime('20220101').date()
 
         age = ref_date.year-dob.year - ((ref_date.month, ref_date.day) < (dob.month, dob.day))
 
