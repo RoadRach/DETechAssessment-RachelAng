@@ -18,6 +18,9 @@ df = df.dropna(subset='name').reset_index(drop=True)
 # check if applicant's email are valid, if invalid, set email to 'NaN'
 df['email'] = df['email'].apply(lambda x: x if us.is_valid_email(x) else pd.NA)
 
+# check if applicant's mobile are valid, if invalid, set mobile_no to 'NaN'
+df['mobile_no'] = df['mobile_no'].apply(lambda x: x if us.is_valid_mobile(x) else pd.NA)
+
 # parse applicant's names
 df['parsed_name'] = df['name'].apply(us.p_name)
 df['First Name'] = df['parsed_name'].apply(lambda x: x.first)
