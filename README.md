@@ -78,10 +78,11 @@ ORDER BY SUM(od.total_items_price) DESC
 
 - Which are the top 3 items that are frequently brought (I am assuming it is supposed to be bought) by members
 ```
-SELECT TOP 3 order_id, count(order_id)
+SELECT TOP 3 prod_name
 FROM order_details od
 LEFT JOIN products p
-ON 
+ON od.prod_id = p.prod_id
+ORDER BY count(order_id) DESC
 ```
 
 ## Section 3: System Design
