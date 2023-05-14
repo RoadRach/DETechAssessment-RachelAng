@@ -51,12 +51,19 @@ Output : Section-1-Data-Pipelines > cron_job > output
 ## Section 2: Databases
 ### Assumption:
 - In each transaction, quantity of each items bought is 1
+- For items boughts it could be a list of product_ids
 
 ### Requirements:
 - [ ] Set up a PostgreSQL db using the docker image provided
 - [ ] Have a dockerfile which will stand up db with the DDL statemnents to create the necessary tables
 - [ ] Produce entity relationship diagrams
 - [ ] Need to write SQL statement for the following: (1) Which are the top 10 members by spending (2) Which are the top 3 items that are frequently brought by members
+
+### Entity relationship diagram
+<p align="center" width="75%">
+    <img width="75%" src="https://github.com/RoadRach/DETechAssessment-RachelAng/blob/main/Section-2-Databases/Entity_Diagram.png">
+</p>
+
 
 ### SQL queries:
 - Which are the top 10 members by spending
