@@ -72,7 +72,7 @@ def cal_age(date_of_birth, as_of_date):
         print(f'Error: {e}')
         age = pd.NA
     
-    return age
+    return (age>18)
 
 df['above_18'] = df['date_of_birth'].apply(lambda x: cal_age(x, '20220101'))
 
