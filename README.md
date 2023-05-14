@@ -68,15 +68,20 @@ Output : Section-1-Data-Pipelines > cron_job > output
 ### SQL queries:
 - Which are the top 10 members by spending
 ```
-SELECT customer_id, SUM(total_items_price) as spending
-FROM tbl
-GROUP BY customer_id
-ORDER BY spending
+SELECT TOP 10 membership_id
+FROM order_details od
+LEFT JOIN customer c
+ON od.cust_id = c.cust_id
+GROUP BY cust_id
+ORDER BY SUM(od.total_items_price) DESC
 ```
 
 - Which are the top 3 items that are frequently brought (I am assuming it is supposed to be bought) by members
 ```
-SELECT 
+SELECT TOP 3 order_id, count(order_id)
+FROM order_details od
+LEFT JOIN products p
+ON 
 ```
 
 ## Section 3: System Design
